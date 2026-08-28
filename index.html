@@ -45,18 +45,15 @@
   .step.done .dot    { background: #22c55e; color: #fff; }
   .step-line { flex: 1; height: 2px; background: #d1dbe8; max-width: 32px; }
 
-  /* 区块标题 */
   .section-title {
     font-size: .88rem; font-weight: 700; color: #4b5c78;
     margin-bottom: 12px; letter-spacing: .03em;
   }
 
-  /* 性格卡片网格 */
+  /* 性格卡片 */
   .personality-grid {
     display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
   }
-  .personality-grid .card-5th { grid-column: 1 / -1; }
-
   .p-card {
     background: #fff; border-radius: 14px;
     padding: 16px 14px; cursor: pointer;
@@ -67,72 +64,133 @@
     -webkit-tap-highlight-color: transparent;
   }
   .p-card:active { transform: scale(.97); }
-  .p-card.selected {
-    border-color: #2563b0;
-    box-shadow: 0 2px 12px rgba(37,99,176,.18);
-  }
+  .p-card.selected { border-color: #2563b0; box-shadow: 0 2px 12px rgba(37,99,176,.18); }
   .p-card .icon { font-size: 2rem; margin-bottom: 6px; }
   .p-card .name { font-size: .95rem; font-weight: 700; color: #1a2233; }
   .p-card .desc { font-size: .72rem; color: #7a8ca8; margin-top: 4px; line-height: 1.4; }
 
-  /* 第5张卡水平布局 */
-  .p-card.card-5th { display: flex; align-items: center; gap: 14px; text-align: left; padding: 14px 20px; }
-  .p-card.card-5th .icon { font-size: 1.8rem; margin-bottom: 0; flex-shrink: 0; }
-  .p-card.card-5th .text { flex: 1; }
-
-  /* 业务按钮 */
-  .biz-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .biz-btn {
+  /* 场景列表 */
+  .scene-list { display: flex; flex-direction: column; gap: 10px; }
+  .scene-btn {
     background: #fff; border-radius: 12px;
-    padding: 14px 10px; cursor: pointer;
+    padding: 14px 16px; cursor: pointer;
     border: 2px solid transparent;
     box-shadow: 0 1px 6px rgba(0,0,0,.06);
     transition: border-color .15s, transform .1s;
-    text-align: center; font-size: .9rem; font-weight: 600;
-    color: #2563b0;
+    text-align: left;
     -webkit-tap-highlight-color: transparent;
+    display: flex; align-items: flex-start; gap: 10px;
   }
-  .biz-btn .biz-icon { font-size: 1.5rem; display: block; margin-bottom: 5px; }
-  .biz-btn:active  { transform: scale(.97); }
-  .biz-btn.selected {
-    border-color: #2563b0;
-    background: #eef4ff;
+  .scene-btn:active { transform: scale(.98); }
+  .scene-btn.selected { border-color: #2563b0; background: #eef4ff; }
+  .scene-btn .scene-num {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: #e0e9f8; color: #2563b0;
+    font-size: .7rem; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 1px;
+  }
+  .scene-btn .scene-text { flex: 1; }
+  .scene-btn .scene-title { font-size: .9rem; font-weight: 700; color: #1a2233; }
+  .scene-btn .scene-sub { font-size: .72rem; color: #e67e22; font-weight: 600; margin-top: 2px; }
+  .scene-btn .scene-quote {
+    font-size: .75rem; color: #7a8ca8; margin-top: 4px;
+    line-height: 1.4; display: -webkit-box;
+    -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
   }
 
-  /* 选中摘要 */
+  /* 顶部摘要 */
   .selection-bar {
     background: #eef4ff; border-radius: 10px;
     padding: 8px 14px; font-size: .8rem; color: #2563b0;
-    margin-bottom: 14px; display: flex; align-items: center; gap: 6px;
-    font-weight: 600;
+    margin-bottom: 14px; font-weight: 600; line-height: 1.5;
   }
-  .selection-bar span { opacity: .7; font-weight: 400; }
+
+  /* 客户原话 */
+  .customer-quote {
+    background: #fff8e1; border-left: 3px solid #f59e0b;
+    border-radius: 0 10px 10px 0;
+    padding: 10px 14px; margin-bottom: 12px;
+    font-size: .82rem; color: #78350f; line-height: 1.7;
+    font-style: italic;
+  }
+  .customer-quote-label {
+    font-size: .7rem; font-weight: 800; color: #b45309;
+    margin-bottom: 4px; font-style: normal; letter-spacing: .04em;
+  }
+
+  /* 3F分析卡 */
+  .analysis-card {
+    background: #fff; border-radius: 12px;
+    box-shadow: 0 1px 6px rgba(0,0,0,.06);
+    overflow: hidden; margin-bottom: 10px;
+  }
+  .analysis-header {
+    background: #f8faff; padding: 10px 14px;
+    font-size: .78rem; font-weight: 800; color: #4b5c78;
+    letter-spacing: .04em; border-bottom: 1px solid #eef2f8;
+  }
+  .analysis-body { padding: 10px 14px; display: flex; flex-direction: column; gap: 8px; }
+  .analysis-row { display: flex; gap: 8px; align-items: flex-start; }
+  .analysis-tag {
+    display: inline-block; padding: 2px 8px; border-radius: 20px;
+    font-size: .68rem; font-weight: 800; flex-shrink: 0; margin-top: 2px;
+    white-space: nowrap;
+  }
+  .tag-fact    { background: #dbeafe; color: #1d4ed8; }
+  .tag-feeling { background: #fce7f3; color: #9d174d; }
+  .tag-focus   { background: #dcfce7; color: #166534; }
+  .analysis-text { font-size: .8rem; color: #374151; line-height: 1.65; }
+  .analysis-text .mine { color: #b45309; font-weight: 700; }
+  .analysis-text .good { color: #166534; font-weight: 700; }
+
+  /* 易错 & 破局 */
+  .warn-card {
+    background: #fff7ed; border-radius: 10px;
+    padding: 10px 14px; margin-bottom: 10px;
+    border: 1px solid #fed7aa;
+  }
+  .warn-label {
+    font-size: .7rem; font-weight: 800; color: #c2410c;
+    margin-bottom: 4px; letter-spacing: .04em;
+  }
+  .warn-text { font-size: .8rem; color: #7c2d12; line-height: 1.65; }
+
+  .tip-card {
+    background: #f0fdf4; border-radius: 10px;
+    padding: 10px 14px; margin-bottom: 12px;
+    border: 1px solid #bbf7d0;
+  }
+  .tip-label {
+    font-size: .7rem; font-weight: 800; color: #15803d;
+    margin-bottom: 4px; letter-spacing: .04em;
+  }
+  .tip-text { font-size: .8rem; color: #14532d; line-height: 1.65; }
 
   /* 话术卡片 */
   .script-card {
-    background: #fff; border-radius: 16px;
-    box-shadow: 0 2px 12px rgba(0,0,0,.07);
-    overflow: hidden; margin-bottom: 12px;
+    background: #fff; border-radius: 14px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.06);
+    overflow: hidden; margin-bottom: 10px;
   }
   .script-card-header {
-    padding: 14px 16px 10px;
+    padding: 11px 14px 8px;
     border-bottom: 1px solid #f0f4f8;
-    font-size: .85rem; font-weight: 700; color: #1a2233;
     display: flex; align-items: center; gap: 8px;
   }
   .script-tag {
     display: inline-block; padding: 2px 9px;
-    border-radius: 20px; font-size: .7rem; font-weight: 700;
+    border-radius: 20px; font-size: .7rem; font-weight: 800;
     letter-spacing: .04em;
   }
   .tag-open   { background: #dbeafe; color: #1d4ed8; }
   .tag-pitch  { background: #dcfce7; color: #166534; }
   .tag-obj    { background: #fef9c3; color: #854d0e; }
   .tag-close  { background: #fce7f3; color: #9d174d; }
-
-  .script-body { padding: 12px 16px 14px; font-size: .88rem; line-height: 1.75; color: #374151; }
-  .script-body p { margin-bottom: 6px; }
-  .script-body p:last-child { margin-bottom: 0; }
+  .script-body {
+    padding: 10px 14px 12px;
+    font-size: .86rem; line-height: 1.8; color: #374151;
+  }
 
   /* 按钮 */
   .btn-reset {
@@ -140,11 +198,10 @@
     background: #2563b0; color: #fff;
     border: none; border-radius: 12px;
     font-size: .95rem; font-weight: 700; cursor: pointer;
-    margin-top: 8px; letter-spacing: .04em;
+    margin-top: 10px; letter-spacing: .04em;
     -webkit-tap-highlight-color: transparent;
   }
   .btn-reset:active { opacity: .85; }
-
   .btn-back {
     display: inline-flex; align-items: center; gap: 4px;
     background: none; border: none; color: #2563b0;
@@ -160,36 +217,32 @@
 
 <header>
   <h1>🏦 银行客户话术助手</h1>
-  <p>选择客户性格和业务类型，快速获取沟通话术</p>
+  <p>选择客户性格和具体场景，获取精准沟通话术</p>
 </header>
 
 <div class="container">
 
-  <!-- 步骤指示器 -->
   <div class="steps" id="stepsBar">
-    <div class="step active" id="step1Ind"><div class="dot">1</div> 选择性格</div>
+    <div class="step active" id="step1Ind"><div class="dot">1</div> 选性格</div>
     <div class="step-line"></div>
-    <div class="step" id="step2Ind"><div class="dot">2</div> 选择业务</div>
+    <div class="step" id="step2Ind"><div class="dot">2</div> 选场景</div>
     <div class="step-line"></div>
-    <div class="step" id="step3Ind"><div class="dot">3</div> 查看话术</div>
+    <div class="step" id="step3Ind"><div class="dot">3</div> 查话术</div>
   </div>
 
-  <!-- Step 1: 选性格 -->
   <div id="step1">
     <div class="section-title">请选择客户性格类型</div>
     <div class="personality-grid" id="personalityGrid"></div>
   </div>
 
-  <!-- Step 2: 选业务 -->
   <div id="step2" class="hidden">
     <button class="btn-back" onclick="goBack(1)">← 重新选择性格</button>
-    <div class="section-title">请选择办理业务</div>
-    <div class="biz-grid" id="bizGrid"></div>
+    <div class="section-title" id="sceneTitle">请选择具体场景</div>
+    <div class="scene-list" id="sceneList"></div>
   </div>
 
-  <!-- Step 3: 话术展示 -->
   <div id="step3" class="hidden">
-    <button class="btn-back" onclick="goBack(2)">← 重新选择业务</button>
+    <button class="btn-back" onclick="goBack(2)">← 重新选择场景</button>
     <div class="selection-bar" id="selectionBar"></div>
     <div id="scriptContent"></div>
     <button class="btn-reset" onclick="reset()">重新开始</button>
@@ -198,259 +251,267 @@
 </div>
 
 <script>
-// ─── 数据 ───────────────────────────────────────────────────────────────────
-
 const personalities = [
-  {
-    id: 'dominant', icon: '⚡', name: '支配型',
-    desc: '果断直接，效率优先，不喜废话'
-  },
-  {
-    id: 'expressive', icon: '😊', name: '表达型',
-    desc: '热情开朗，关系导向，易受感染'
-  },
-  {
-    id: 'amiable', icon: '🕊️', name: '和谐型',
-    desc: '保守谨慎，不喜风险，需要安全感'
-  },
-  {
-    id: 'analytical', icon: '🔍', name: '分析型',
-    desc: '理性细致，注重数据，爱货比三家'
-  },
-  {
-    id: 'irritable', icon: '🌋', name: '暴躁型',
-    desc: '情绪激动，急于解决，需被尊重'
-  }
+  { id: 'dominant',   icon: '⚡', name: '支配型',  desc: '逻辑严密，强势专业，重契约，用词带刺' },
+  { id: 'expressive', icon: '😊', name: '表达型',  desc: '爱唠嗑，情绪外露，易受谣言影响，需被哄' },
+  { id: 'amiable',    icon: '🕊️', name: '和谐型',  desc: '讲道理，怕冲突，好面子，时间敏感' },
+  { id: 'irritable',  icon: '🌋', name: '暴躁型',  desc: '脾气火爆，极易升级，吃软不吃硬' }
 ];
 
-const businesses = [
-  { id: 'wealth',    icon: '📈', name: '理财产品' },
-  { id: 'loan',      icon: '🏠', name: '贷款业务' },
-  { id: 'account',   icon: '💳', name: '开户业务' },
-  { id: 'complaint', icon: '🗣️', name: '投诉处理' }
-];
+const scenes = {
 
-// 话术数据：scripts[personalityId][businessId] = { open, pitch, objection, close }
-const scripts = {
-  dominant: {
-    wealth: {
-      open:      '您好，我直接给您介绍最适合的方案，不占您太多时间。',
-      pitch:     '这款产品年化收益 %，期限灵活，随时可赎回，没有复杂条款。<br>过去三年业绩稳定，同类产品中排名前10%。',
-      objection: '完全理解您要求高效——这款产品我们操作流程最精简，签一份文件，当天起息。',
-      close:     '您看现在就办，我帮您优先排单，15分钟内完成。'
+  dominant: [
+    {
+      id: 'd1',
+      title: '理财周末延期',
+      sub:   '认知错位局',
+      quote: '说好周五到期的理财，周末两天了钱还没到账！你们这是违约知不知道？我要打银保监电话投诉你们欺诈！',
+      fact:    '周五到期理财未到账。<span class="mine">【致命暗雷】客户默认"到期=资金秒回"，忽略了周末非交易日顺延的金融常识。</span>',
+      feeling: '被欺骗的愤怒、智商被冒犯的屈辱感。<span class="mine">【雷区】千万别说"这是常识/规定"，会让他觉得你在讽刺他没常识。</span>',
+      focus:   '要契约精神的兑现，要维护自己"懂行"的尊严。<span class="good">【破局点】用专业对专业，拿出合同条款，把"违约"转化为"交易规则的正常履约"，给足专业尊重。</span>',
+      warn:    '直接说"周末不上班所以顺延"必死。他要的不是生活常识，是合同依据。',
+      tip:     '策略：引用产品说明书条款→承认告知不足→给出到账精确时间。全程保持对等的专业语气，不卑不亢。',
+      open:    '您好，我来给您一个准确的制度解释，不是生活常识，是合同层面的。',
+      pitch:   '根据您签署的理财产品合同第X条"到期处理"约定：到期日遇非工作日，资金划付顺延至下一工作日。周六日属法定非交易日，这是合同明确约定的正常履约，不构成违约。您的资金本周一正常到账，时间节点确定。',
+      objection: '您提到卖的时候没说清楚，这点我代表我行向您致歉——告知义务确实应当更明确。我会帮您正式登记这条意见，推动我行完善销售话术。如需一份书面说明，我现在可以出具。',
+      close:   '资金周一到账，我来给您发条短信确认。如需书面材料，签个名我马上打印。'
     },
-    loan: {
-      open:      '您好，我帮您快速看一下您能拿到的最优贷款方案。',
-      pitch:     '根据您的情况，最高可贷 XX 万，利率 X.X%，3个工作日放款。<br>手续全程线上，不需要反复跑网点。',
-      objection: '审批流程我们已经精简到最短，您只需提供身份证和收入证明即可，其余我来处理。',
-      close:     '现在授权我查询，今天就能给您出预审结果。'
-    },
-    account: {
-      open:      '您好，开户的话我给您走最快通道，10分钟搞定。',
-      pitch:     '基础账户 + 网银 + 手机银行一次性开通，日后转账、理财、还款全在线上操作。<br>我们的 App 功能齐全，不用再专门跑柜台。',
-      objection: '所有资料您只需提供一次，我这边帮您一步到位录入，不用重复填表。',
-      close:     '身份证给我看一下，马上给您开好。'
-    },
-    complaint: {
-      open:      '您反映的问题我听到了，我现在直接帮您处理。',
-      pitch:     '我来确认一下具体是哪个环节出了问题，我有权限直接给您一个解决方案，不用转来转去。',
-      objection: '我理解这耽误了您的时间，我来承担这个跟进责任，处理结果今天内给您回复。',
-      close:     '我现在就登记并升级处理，您留个联系方式，我亲自回复您。'
+    {
+      id: 'd2',
+      title: '扣款失败怕上征信',
+      sub:   '恐慌施压局',
+      quote: '我今天本来该扣房贷，凌晨卡里差了几十块没扣成功，我现在把钱转进去了！会不会上征信？我下周还要办贷款，要是黑了你们赔得起吗？',
+      fact:    '房贷凌晨扣款失败，白天已补足余额。<span class="mine">【致命暗雷】客户处于"信息黑洞"中，不知道银行的扣款批次和宽限期规则。</span>',
+      feeling: '极度恐慌，恐惧未知惩罚（"几十块毁了我几百万的计划"）。<span class="mine">【雷区】别说"您怎么不留够钱"（伤口撒盐），别盲目承诺"绝对不上"（越权违规）。</span>',
+      focus:   '要绝对的"安全确认"，要消除对未来信用污点的恐惧。<span class="good">【破局点】用系统查询结果+明确宽限期制度给定心丸，把"你的失误"转化为"系统的容错机制"。</span>',
+      warn:    '不能模糊表态"应该没事""一般不会"，他会继续逼问。必须给出制度条款和系统查询结果，两个锚点缺一不可。',
+      tip:     '策略：先查系统确认本次扣款状态→报出宽限期天数→提供《还款记录证明》作为增值服务。把被动局面变成主动服务。',
+      open:    '您好，我现在立刻帮您查系统，给您一个明确答复，不是估计，是查出来的结果。',
+      pitch:   '（查询后）您的账户今日补足后已触发补扣，扣款已成功。关于征信：我行房贷系统设有3个自然日宽限期，首次未扣且宽限期内补足的，不产生逾期记录，不上报征信。您的情况完全在安全线内，这是制度，不是口头承诺。',
+      objection: '您下周要办贷款，我建议您届时申请一份我行出具的《个人还款记录证明》，白纸黑字证明您的良好还款历史，这对您的贷款申请是正向加分材料。',
+      close:   '征信无影响，结论确定。《还款记录证明》需要的话我现在就办，您看是否需要？'
     }
-  },
+  ],
 
-  expressive: {
-    wealth: {
-      open:      '您好！感谢您今天来，我来给您介绍一个特别适合您的理财方案！',
-      pitch:     '这款产品最近很多客户都在买，口碑非常好！收益稳健，而且我们会定期给您发市场播报，让您随时了解投资动态。<br>您的朋友中要是有人感兴趣，咱们还有专属推荐礼品！',
-      objection: '您说得对，选择理财是要慎重！不过我可以先帮您小额试水，体验一下，没压力的。',
-      close:     '咱们先买一点点感受一下，喜欢了再加码，您觉得怎么样？'
+  expressive: [
+    {
+      id: 'e1',
+      title: '理财抢不到怕倒闭',
+      sub:   '群体恐慌局',
+      quote: '哎哟小王啊，我今天特意起大早来买那个理财，你们说没额度了！是不是你们银行没钱了要倒闭了呀？我群里老姐妹都说现在银行不安全，我的钱放你们这到底安不安全哦？',
+      fact:    '热门理财额度售罄。<span class="mine">【致命暗雷】大妈把"产品抢空"和"银行没钱要倒闭"画了等号，是典型的微信群谣言受害者。</span>',
+      feeling: '损失厌恶、群体性恐慌。<span class="mine">【雷区】千万别硬讲"存款保险制度"，她听不进去，只会觉得你在背书敷衍。</span>',
+      focus:   '要情绪上的"被重视"，要极其通俗的"大白话背书"。<span class="good">【破局点】顺着她"捧"她，用"抢手货"逻辑解释额度，用"国家兜底"的大白话给安全感。</span>',
+      warn:    '不能上来就讲制度讲数据，她会觉得你在背稿糊弄。要先让她感受到"被特别关注"，情绪稳了才能听进去内容。',
+      tip:     '策略：先夸她消息灵→用超市特价打比方解释额度→用最简单一句话给安全感→登记通知+替代产品收尾。全程叫"阿姨"。',
+      open:    '哎呀阿姨，您一大早就来，真辛苦您了！您消息可真灵通，那款确实很受欢迎，我来给您说清楚是怎么回事。',
+      pitch:   '阿姨，额度卖完跟银行倒不倒闭是两回事——就好像超市的特价鸡蛋卖完了，不代表超市要关门。我们银行有国家牌照，受银保监管，您存在这的钱，国家兜底的，安全得很！群里那些说法啊，都是谣言，您别信。',
+      objection: '这款卖完了不要紧，阿姨，我帮您登记手机号，下次有新额度第一个通知您！另外我这还有一款收益差不多、随时能买的，要不要我帮您介绍一下？',
+      close:   '手机号我记好了，有货马上通知您！阿姨，我再帮您把手机银行里的提醒功能开好，以后在家就能第一时间抢，不用专门跑来，好不好？'
     },
-    loan: {
-      open:      '您好！来办贷款啊，我来帮您把最划算的方案找出来！',
-      pitch:     '我们最近推出了一个客户反馈特别好的贷款产品，利率低、放款快，好多朋友都推荐过来的！<br>您把大致需求告诉我，我帮您量身定制一个方案。',
-      objection: '完全理解有顾虑，我帮您把每个月还款金额算得清清楚楚，您看了就放心了。',
-      close:     '资料准备好了一起来，我全程帮您跟进，保证顺顺利利！'
+    {
+      id: 'e2',
+      title: 'ATM取款被限额',
+      sub:   '尊严受损局',
+      quote: '我这卡里明明有5万块钱，凭什么ATM上只能取2000？！我自己的钱凭什么不让我用？你们是不是看我老太婆好欺负，故意冻结我的钱？',
+      fact:    'ATM取现遇到单日限额被下调。<span class="mine">【致命暗雷】大妈不懂"断卡行动"，只觉得"我的钱被冻结了"。</span>',
+      feeling: '被针对的委屈、被当成"坏人"的愤怒。<span class="mine">【雷区】千万别说"这是反诈要求/保护您的钱"，她会觉得"你凭什么防我"。</span>',
+      focus:   '要拿回对自己财产的"绝对控制权"，要面子。<span class="good">【破局点】把"限制"包装成"升级保护"，引导去柜台做"身份核验提额"，给她一种"我是走特殊流程"的台阶下。</span>',
+      warn:    '绝对不能说"这是规定"。她要的是"被尊重"和"立刻能用钱"，要让她觉得去柜台是享受特权，不是被刁难。',
+      tip:     '策略：先认同委屈感→解释是"保护您不被骗"（不是防您）→亲自陪同去柜台提额→全程叫"阿姨"，语气热情。',
+      open:    '阿姨您别生气，您的钱一分都在，这绝对不是针对您的，我来给您解释清楚，然后咱们马上解决！',
+      pitch:   '阿姨，这是我们最近为了保护您这样的老年客户专门做的安全升级——骗子最常用的手段就是让老人去ATM取大额现金。这个限额是保护您的，不是防您的！您的钱一分都没少，到柜台来，我亲自帮您做个身份核验，今天就给您把额度提回来，当天就能取到您要的钱。',
+      objection: '阿姨，就两分钟，我陪您去，柜台那边我帮您说，您只要配合看一下身份证就好。提完额度以后，您以后取钱都方便，再也不会被限了。',
+      close:   '走，阿姨我陪您去柜台，今天保证帮您把钱取出来！'
     },
-    account: {
-      open:      '欢迎欢迎！开户的话跟着我来，我带您一步一步搞定！',
-      pitch:     '我们银行 App 超好用的，转账、理财、缴费什么都能做，我帮您开通后手把手教您怎么用！<br>您要是有朋友也想开户，一起来我帮你们一起办！',
-      objection: '放心放心，我来帮您填，您只要签名就好，超快的！',
-      close:     '好，咱们现在就开始，一会儿就好，之后遇到任何问题直接找我！'
-    },
-    complaint: {
-      open:      '您好，您遇到问题了，先别急，跟我说说是怎么回事，我来帮您！',
-      pitch:     '我完全理解您的心情，这件事确实让您不舒服了，我来帮您把这个事好好处理一下。<br>您放心，我会帮您一直跟到有结果为止的。',
-      objection: '您的感受完全正确！这件事我来背着，绝对不让您白跑一趟。',
-      close:     '我帮您记录好了，等我消息哈，一有进展马上告诉您！'
+    {
+      id: 'e3',
+      title: '代孙子开户缺材料',
+      sub:   '血缘绑架局',
+      quote: '我是他亲奶奶！带他来开个卡存压岁钱，我身份证带了，他户口本也带了，凭什么不给我办？还要他爸妈的证件？他爸妈在外地打工，你们这不是折腾人吗？',
+      fact:    '奶奶代办未成年人开户，缺父母证件。<span class="mine">【致命暗雷】奶奶认为"血缘=代办权"，完全不懂"法定监护人"的法律概念。</span>',
+      feeling: '被刁难的委屈，心疼跑一趟的焦躁。<span class="mine">【雷区】千万别跟她普法"未成年人保护法"，她只会觉得你拿大帽子压她。</span>',
+      focus:   '要"最少麻烦"的解决方案，不想让在外地的儿子折腾。<span class="good">【破局点】肯定她的爱心，给出"不用儿子回来"的替代方案，把"拒绝"变成"帮忙想办法"。</span>',
+      warn:    '不能只说"规定不行，要父母来"就结束。必须给出当场可执行的远程核验方案，绝不让她白跑。',
+      tip:     '策略：先夸奶奶疼孙子→解释为什么要父母（保护孩子的钱，不是刁难您）→抛出视频核验替代方案→陪她当场打电话搞定。',
+      open:    '奶奶，您特意带孙子来，真的太用心了！孩子有您这样的奶奶真幸福。这件事我来帮您想办法，一定不让您白跑！',
+      pitch:   '开未成年人账户，法律要求必须由爸爸或妈妈来授权，这是为了保护孩子的钱将来不被任何人挪用——哪怕是亲属。这不是为难您，是保护孙子的。不过不用让他们请假回来——只需要孙子的爸爸或妈妈，用手机发一条视频说"同意开户"，我这边直接远程核验，今天就能办好！',
+      objection: '奶奶，您现在就把孙子爸爸或妈妈的电话打过来，我全程帮您操作，他们说一句话就好，10分钟内搞定，孙子今天就有自己的小账户了！',
+      close:   '好，电话打过来，我来帮您们弄，今天保证把卡开好！'
     }
-  },
+  ],
 
-  amiable: {
-    wealth: {
-      open:      '您好，慢慢来不着急，我来给您详细介绍一下我们的理财产品。',
-      pitch:     '这款产品以稳健为主，本金安全有保障，收益虽然不是最高但非常稳定，很多老客户都长期持有。<br>我们每个月会给您出一份对账单，让您清楚看到资金状况，完全放心。',
-      objection: '您的谨慎是对的，我建议您先用一小部分资金试试，不影响日常生活，感受一段时间再决定加不加。',
-      close:     '这个方案完全没有压力，什么时候想赎回都可以，您看合适吗？'
+  amiable: [
+    {
+      id: 'a1',
+      title: '代儿子开户缺出生证明',
+      sub:   '时间冲突局',
+      quote: '我明天一早的高铁去外地出差，今天必须把儿子的卡开了。我身份证和户口本都带了，你们非要出生证明？户口本上写着我是他爸还不够吗？',
+      fact:    '次日出差，带身份证户口本，户主是爷爷，缺出生证明。<span class="mine">【致命暗雷】他以为"户口本=万能证明"，没意识到"户主非父亲"导致的证据链断裂。</span>',
+      feeling: '时间紧迫的焦躁，对死板规定的无奈。<span class="mine">【雷区】别说"这是人行规定"，他不吃硬，只会觉得你态度冷漠。</span>',
+      focus:   '要"不耽误行程"的确定性，要"不用亲自跑第二趟"的捷径。<span class="good">【破局点】共情出差压力，直接抛出"母亲代办"替代方案，把"办不了"变成"换个方式今天就能办"。</span>',
+      warn:    '不能只说"办不了，要出生证明"就结束。必须同时给出替代路径，让他带着解决方案离开，而不是带着沮丧离开。',
+      tip:     '策略：承认材料要求合理→共情出差时间压力→立刻抛出替代方案（妈妈代办）→帮他把材料清单写好，降低跑第二趟的摩擦。',
+      open:    '您好，我理解您明天要出差，时间很紧，我来帮您看看今天有没有别的办法解决。',
+      pitch:   '开未成年人账户，户口本户主是爷爷的情况下，出生证明是确认您父子关系的必要材料，这条我没办法绕过。但是——孩子妈妈今天在家的话，她带上自己的身份证和孩子的出生证明来，今天就能办好，完全不用等您出差回来。',
+      objection: '您今天特意来了，我帮您把所需材料清单写清楚，还有我的联系方式，孩子妈妈来之前可以先发微信给我确认一下，我帮她提前排好，来了直接办，不用等。',
+      close:   '这是材料清单，我的电话在上面，孩子妈妈来之前给我发消息，我帮她安排好，一次搞定。'
     },
-    loan: {
-      open:      '您好，贷款这件事我来帮您仔细算一算，我们找一个最稳妥的方案。',
-      pitch:     '我建议您选择固定利率方案，这样每个月还款金额固定，方便您做家庭预算，不会有意外波动。<br>还款期限我们可以拉长一点，月供压力小一些，生活会舒适很多。',
-      objection: '您担心还款压力是对的，我来帮您详细测算不同期限的月供金额，您选一个最顺手的。',
-      close:     '您不用急着决定，回家跟家人商量一下，随时欢迎再来找我。'
-    },
-    account: {
-      open:      '您好，开户我来帮您一步步来，有任何不懂的随时问我。',
-      pitch:     '我们的账户安全保障非常完善，有短信提醒、异地登录验证、大额转账二次确认，资金很安全。<br>手机银行我帮您设置好，操作很简单，您平时在家就能查余额转账，不用专程跑网点。',
-      objection: '没关系，我帮您设置好默认选项，您平时用不到的功能不用管，最常用的转账和查余额都很简单。',
-      close:     '开好账户后我留个联系方式给您，以后有任何问题直接联系我。'
-    },
-    complaint: {
-      open:      '您好，您遇到了不愉快的事，我先表示抱歉，请您慢慢说，我仔细听。',
-      pitch:     '您说得这些我都记下来了，我完全理解您的感受，这件事确实给您造成了困扰。<br>我会认真跟进这个问题，确保有一个让您满意的处理结果。',
-      objection: '我保证这件事不会石沉大海，我会亲自跟进，每个阶段都会告知您进展。',
-      close:     '请您放心，我会妥善处理，您有任何问题随时联系我，感谢您的耐心。'
+    {
+      id: 'a2',
+      title: 'VIP客户被优先，感觉不公平',
+      sub:   '阶层对立局',
+      quote: '你好，我排了半个小时了，为什么刚才那个大叔一来就直接去VIP窗口了？你们这不是区别对待吗？普通客户的时间就不是时间啊？',
+      fact:    '排队等候时间长，目睹其他客户被优先叫号。<span class="mine">【致命暗雷】他不介意别人快，他介意的是"我的时间不被尊重"和"我被当成了二等公民"。</span>',
+      feeling: '被轻视的委屈，对规则不透明的质疑。<span class="mine">【雷区】别说"人家是VIP/资产达标"，这会直接激化阶层对立，让他觉得银行"嫌贫爱富"。</span>',
+      focus:   '要"被看见"、要合理解释、要明确的等待预期。<span class="good">【破局点】淡化"VIP"标签，强调"特殊业务/对公业务通道差异"，给出精确剩余等待时间，递一杯水作为情绪补偿。</span>',
+      warn:    '不能强调对方是VIP，不能说"等一下"这种模糊预期。必须给出明确的剩余分钟数，让他能"算账"。',
+      tip:     '策略：先道歉承认等待辛苦→解释通道差异（不提VIP，说"对公业务专用通道"）→给出精确剩余时间→递水+登记信息体现重视。',
+      open:    '您好，等了这么久真的辛苦了，非常感谢您的耐心，我先向您道歉。',
+      pitch:   '刚才那位先生走的是对公业务专用通道，和您排的零售柜台是两套独立系统，并不是占了您的位置。您现在前面还有2位，大概再等8分钟就轮到您了。我帮您在叫号系统里做个备注，轮到的时候我第一时间来叫您，您先坐下，我去给您倒杯水。',
+      objection: '您今天等了这么久，您的感受我完全理解，我会把这条意见记下来向主管反映，看能不能优化叫号体验。如果您办的业务手机银行能处理，我现在帮您操作，今天就不用等了——您是什么业务？',
+      close:   '我帮您在系统里备注好了，水给您放这里，8分钟，轮到马上叫您。'
     }
-  },
+  ],
 
-  analytical: {
-    wealth: {
-      open:      '您好，我来给您做一个完整的产品介绍，包括收益率、风险等级和历史业绩。',
-      pitch:     '这款产品风险评级为 R2（中低风险），成立以来年化收益率均值为 X.X%，最差年份收益率 X.X%，最好年份 X.X%。<br>底层资产以债券为主，占比约 80%，流动性高，T+1 工作日可赎回。<br>费率方面：管理费 0.X%/年，无申购费，赎回费 7 天内 0.X%，7 天后为零。',
-      objection: '我可以给您看一份详细的产品说明书和近三年的对账数据，您可以对比同类产品再做决定。',
-      close:     '您有什么数据上的疑问，我都可以帮您查，确保您决策有足够的依据。'
+  irritable: [
+    {
+      id: 'i1',
+      title: '排队等太久拍桌发火',
+      sub:   '物理失控局',
+      quote: '（拍桌子）搞啥子名堂！我等了快一个小时了！你们那个什么破机器不能办吗？非要让我坐在这干等！是不是欺负我们老年人不会用智能机？',
+      fact:    '排队近1小时，办理现金存单业务（必须柜台）。<span class="mine">【致命暗雷】老头不懂"现金业务必须人工核验"，认为"机器都能办，凭什么让我等"。</span>',
+      feeling: '体力透支的烦躁，被边缘化的愤怒。<span class="mine">【雷区】千万别跟他讲"智能机分流"的道理，他只会觉得你在推诿。</span>',
+      focus:   '要"被特殊照顾"的特权感，要"立刻有人管"的响应。<span class="good">【破局点】物理降温（起身、递水、搀扶），给足面子（"您这笔业务重要，必须柜台当面点清"），精确报出剩余等待时间。</span>',
+      warn:    '绝对不能说"您去机器上办"（他的业务机器办不了）或"您再等一下"（太模糊会炸）。身体要先动起来——站起来、走过去、递水，动作比话语更重要。',
+      tip:     '策略：立刻起身走过去→认同愤怒（"等这么久确实不应该"）→用"您的业务重要"拔高他→精确报剩余时间+递水落座，把"等待"变成"被重视的等待"。',
+      open:    '（立刻起身走过去）大爷，您等这么久了，真的辛苦！是我们工作没做好，我现在马上来！',
+      pitch:   '大爷，您来办的存单业务，涉及现金当面点清，这个必须由柜台人员亲自核验，机器没有这个权限——不是为难您，是您这笔钱太重要了，必须人工保障。我刚查了一下，您前面还有2位，大概再等8分钟就轮到您了。来，您先坐这里，我去给您倒杯热水。',
+      objection: '大爷，您今天等这么久，我记下来了，会向主管反映，看能不能给您优先安排。下次您来，直接找我，我帮您提前安排好，不用这样等。',
+      close:   '大爷，8分钟，我盯着，到了第一个叫您。水来了，您先喝着。'
     },
-    loan: {
-      open:      '您好，我先把我们贷款产品的完整条款和费率给您列出来，方便您比较。',
-      pitch:     '当前利率为年化 X.X%，等额还款条件下 XX 万贷 10 年月供为 XXXX 元，总利息为 XX 万。<br>前置费用：评估费 XX 元，抵押登记费 XX 元，无其他隐性收费。<br>提前还款规则：还款满 12 个月后可申请，不收违约金。',
-      objection: '我帮您做一份横向对比表，列出我行和市场主要产品的利率、期限和费用，数据说话。',
-      close:     '这是我们完整的产品对比资料，您带回去研究，有任何问题我都可以给您答复。'
-    },
-    account: {
-      open:      '您好，我先把我们账户的功能、权限和安全机制完整介绍一下。',
-      pitch:     '账户分为 I 类、II 类、III 类，功能权限逐级递减但安全等级一致，均支持 256 位加密和双因素认证。<br>I 类账户无单日转账限额（需人工核验），II 类单日上限 10 万，III 类 1 万。<br>所有操作均有日志记录，可在 App 随时查询。',
-      objection: '这是我们的账户协议和隐私保护条款，您可以仔细阅读，我来帮您解答任何条款疑问。',
-      close:     '您确认哪种账户类型符合您的需求后，我们就可以开始办理。'
-    },
-    complaint: {
-      open:      '您好，请您把事情经过按时间顺序描述一下，我来逐条记录。',
-      pitch:     '我现在帮您核实每个环节的具体情况：时间节点、涉及金额、操作步骤，确保投诉记录准确无误。<br>按照我行投诉处理流程，一般问题 3 个工作日内给出处理结果，复杂问题不超过 15 个工作日。',
-      objection: '我会给您出具一份书面的投诉受理回执，上面注明投诉编号和预计回复时间，您可以凭此追踪进度。',
-      close:     '投诉编号为 XXXXXX，您可以通过官方渠道查询进展，我也会主动联系您通报结果。'
+    {
+      id: 'i2',
+      title: 'ATM吞卡担心钱没了',
+      sub:   '灾难化想象局',
+      quote: '（满头大汗，语无伦次）同志！同志！那个机器把我的卡吃进去了！我刚才还在取钱啊，我的钱是不是被机器吞了？！里面有两万块钱啊，你们快帮我弄出来！',
+      fact:    'ATM操作时卡片被吞。<span class="mine">【致命暗雷】老头分不清"吞卡"和"钱被吞"，处于"钱没了"的极度灾难化想象中。</span>',
+      feeling: '天塌了的恐慌，对银行机器的极度不信任。<span class="mine">【雷区】别说"这是正常故障/等清机"，这会让他觉得你在敷衍推托。</span>',
+      focus:   '要"钱绝对安全"的立刻确认，要"有人立刻帮我解决"的依靠感。<span class="good">【破局点】第一句话必须是"钱在账上，一分不少"（定心丸），然后明确"我personally帮您跟进"，把"机器故障"转化为"专人服务"。</span>',
+      warn:    '第一句话绝对不能是"您先冷静""您先等一下""要登记"，必须是"您的钱是安全的"——只有先解除恐慌，他才能配合你走后续流程。',
+      tip:     '策略：第一句话给定心丸（钱在）→立刻查账确认金额→解释吞卡机制→出具吞卡凭证+补办临时卡，让他带着"解决方案"而不是"问题"离开。',
+      open:    '（立刻引导坐下）大爷别慌，您的钱是安全的，卡和钱是分开的，我现在马上帮您查！',
+      pitch:   '（查询）大爷，您的账户余额XX元，完整无缺，一分没动。卡被吞是机器的安全保护机制，操作超时自动回收卡片，钱完全没有问题。现在我来帮您处理：我出一张吞卡受理凭证给您，上面有单号，卡在1-3个工作日内可取回。同时，我现在就帮您补办一张临时卡，今天就能正常用，一点不耽误。',
+      objection: '大爷，这张凭证您收好，上面有我的电话，有任何进展我主动通知您，不用您来催。补办临时卡15分钟就好，今天的钱一点都不影响取。',
+      close:   '钱是安全的，这个您放心。凭证收好，我的电话在上面。咱们现在去补临时卡，15分钟，今天就能用。'
     }
-  },
+  ]
 
-  irritable: {
-    wealth: {
-      open:      '您好，我理解您现在情绪不太好，我来直接说重点，不绕弯子。',
-      pitch:     '我给您推荐的这个方案，是我们客户口碑最好的产品，安全、稳健、随时可取。<br>您不需要担心被套住，灵活度高，我保证讲的每一条都是实情。',
-      objection: '您的质疑完全正当，我这里有真实的历史数据给您看，数字不会骗人。',
-      close:     '您看一眼数据，觉得合适就办，觉得不合适我们再想别的方案，完全尊重您的决定。'
-    },
-    loan: {
-      open:      '您好，我知道贷款这件事让您着急，我来帮您尽快搞定。',
-      pitch:     '我直接给您说最快方案：最快 X 个工作日放款，所需材料最少，我帮您把流程走到底。<br>我来负责您的全部跟进工作，不需要您反复打电话催。',
-      objection: '我听到您的不满了，这个问题确实不应该发生在您身上，我现在就帮您升级处理优先级。',
-      close:     '我现在就开始帮您走流程，有任何卡点我第一时间通知您，绝不让您等到没有消息。'
-    },
-    account: {
-      open:      '您好，开户流程我来帮您走最快的，不让您多等一分钟。',
-      pitch:     '整个流程 10 分钟，您只需要配合我看一下身份证，其余全部我来操作。<br>开好之后手机银行当场激活，回家就能用，不用再跑一趟。',
-      objection: '我理解您的不耐烦，是我们的程序让您费时间了，我来想办法优化这个步骤。',
-      close:     '马上开始，我帮您盯着，出来第一个叫您。'
-    },
-    complaint: {
-      open:      '您好，我看到您很生气，这是您应有的反应，我来认真处理这件事。',
-      pitch:     '首先，我为我们工作的疏漏向您道歉。<br>现在我需要您把问题告诉我，我来立刻启动处理流程，不让这件事再拖下去。',
-      objection: '您说得对，这件事不应该发展到这一步，我不会为过失找理由，我只负责帮您解决它。',
-      close:     '我现在直接升级给我的主管，您等我五分钟，我带着处理方案回来，绝不让您空手而归。'
-    }
-  }
 };
 
-// ─── 状态 ────────────────────────────────────────────────────────────────────
 let selectedPersonality = null;
-let selectedBusiness    = null;
+let selectedScene       = null;
 
-// ─── 渲染 ─────────────────────────────────────────────────────────────────────
 function renderPersonalities() {
   const grid = document.getElementById('personalityGrid');
   grid.innerHTML = '';
-  personalities.forEach((p, i) => {
-    const is5th = i === 4;
+  personalities.forEach(p => {
     const div = document.createElement('div');
-    div.className = 'p-card' + (is5th ? ' card-5th' : '');
-    if (is5th) div.classList.add('card-5th');
-    div.innerHTML = is5th
-      ? `<div class="icon">${p.icon}</div><div class="text"><div class="name">${p.name}</div><div class="desc">${p.desc}</div></div>`
-      : `<div class="icon">${p.icon}</div><div class="name">${p.name}</div><div class="desc">${p.desc}</div>`;
-    if (is5th) {
-      const wrapper = document.createElement('div');
-      wrapper.className = 'card-5th';
-      wrapper.appendChild(div);
-      grid.appendChild(wrapper);
-    } else {
-      grid.appendChild(div);
-    }
+    div.className = 'p-card';
+    div.innerHTML = `<div class="icon">${p.icon}</div><div class="name">${p.name}</div><div class="desc">${p.desc}</div>`;
     div.onclick = () => selectPersonality(p.id);
+    grid.appendChild(div);
   });
 }
 
-function renderBusinesses() {
-  const grid = document.getElementById('bizGrid');
-  grid.innerHTML = '';
-  businesses.forEach(b => {
+function renderScenes() {
+  const list = document.getElementById('sceneList');
+  const p = personalities.find(x => x.id === selectedPersonality);
+  document.getElementById('sceneTitle').textContent = `${p.icon} ${p.name} — 请选择场景`;
+  list.innerHTML = '';
+  scenes[selectedPersonality].forEach((s, i) => {
     const btn = document.createElement('button');
-    btn.className = 'biz-btn';
-    btn.innerHTML = `<span class="biz-icon">${b.icon}</span>${b.name}`;
-    btn.onclick = () => selectBusiness(b.id);
-    grid.appendChild(btn);
+    btn.className = 'scene-btn';
+    btn.innerHTML = `
+      <div class="scene-num">${i + 1}</div>
+      <div class="scene-text">
+        <div class="scene-title">${s.title}</div>
+        <div class="scene-sub">${s.sub}</div>
+        <div class="scene-quote">"${s.quote}"</div>
+      </div>`;
+    btn.onclick = () => selectScene(s.id);
+    list.appendChild(btn);
   });
 }
 
 function renderScript() {
   const p = personalities.find(x => x.id === selectedPersonality);
-  const b = businesses.find(x => x.id === selectedBusiness);
-  const s = scripts[selectedPersonality][selectedBusiness];
+  const s = scenes[selectedPersonality].find(x => x.id === selectedScene);
 
   document.getElementById('selectionBar').innerHTML =
-    `${p.icon} <strong>${p.name}</strong> <span>×</span> ${b.icon} <strong>${b.name}</strong>`;
+    `${p.icon} <strong>${p.name}</strong> · ${s.title} <span style="color:#e67e22;font-size:.75rem;font-weight:600;"> ${s.sub}</span>`;
 
-  const sections = [
-    { tag: 'tag-open',  label: '开场接待', text: s.open },
-    { tag: 'tag-pitch', label: '核心话术', text: s.pitch },
-    { tag: 'tag-obj',   label: '异议处理', text: s.objection },
-    { tag: 'tag-close', label: '促成结语', text: s.close }
-  ];
-
-  document.getElementById('scriptContent').innerHTML = sections.map(sec => `
-    <div class="script-card">
-      <div class="script-card-header">
-        <span class="script-tag ${sec.tag}">${sec.label}</span>
-      </div>
-      <div class="script-body"><p>${sec.text}</p></div>
+  document.getElementById('scriptContent').innerHTML = `
+    <div class="customer-quote">
+      <div class="customer-quote-label">💬 客户原话</div>
+      "${s.quote}"
     </div>
-  `).join('');
+
+    <div class="analysis-card">
+      <div class="analysis-header">🔍 3F 犀利拆解</div>
+      <div class="analysis-body">
+        <div class="analysis-row">
+          <span class="analysis-tag tag-fact">事实</span>
+          <div class="analysis-text">${s.fact}</div>
+        </div>
+        <div class="analysis-row">
+          <span class="analysis-tag tag-feeling">情绪</span>
+          <div class="analysis-text">${s.feeling}</div>
+        </div>
+        <div class="analysis-row">
+          <span class="analysis-tag tag-focus">意图</span>
+          <div class="analysis-text">${s.focus}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="warn-card">
+      <div class="warn-label">⚠️ 新人必看易错点</div>
+      <div class="warn-text">${s.warn}</div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-label">💡 应对策略</div>
+      <div class="tip-text">${s.tip}</div>
+    </div>
+
+    ${[
+      { tag: 'tag-open',  label: '开场接待', text: s.open },
+      { tag: 'tag-pitch', label: '核心话术', text: s.pitch },
+      { tag: 'tag-obj',   label: '异议处理', text: s.objection },
+      { tag: 'tag-close', label: '促成结语', text: s.close }
+    ].map(sec => `
+      <div class="script-card">
+        <div class="script-card-header">
+          <span class="script-tag ${sec.tag}">${sec.label}</span>
+        </div>
+        <div class="script-body">${sec.text}</div>
+      </div>
+    `).join('')}
+  `;
 }
 
-// ─── 交互 ─────────────────────────────────────────────────────────────────────
 function selectPersonality(id) {
   selectedPersonality = id;
-  document.querySelectorAll('.p-card').forEach(c => c.classList.remove('selected'));
-  // 找到对应卡片并标记
   document.querySelectorAll('.p-card').forEach(c => {
     const pData = personalities.find(p => p.id === id);
-    if (c.querySelector('.name') && c.querySelector('.name').textContent === pData.name) {
-      c.classList.add('selected');
-    }
+    c.classList.toggle('selected', c.querySelector('.name').textContent === pData.name);
   });
   setTimeout(() => goToStep(2), 180);
 }
 
-function selectBusiness(id) {
-  selectedBusiness = id;
-  document.querySelectorAll('.biz-btn').forEach(b => b.classList.remove('selected'));
-  event.currentTarget.classList.add('selected');
+function selectScene(id) {
+  selectedScene = id;
   setTimeout(() => goToStep(3), 180);
 }
 
@@ -458,30 +519,26 @@ function goToStep(n) {
   document.getElementById('step1').classList.toggle('hidden', n !== 1);
   document.getElementById('step2').classList.toggle('hidden', n !== 2);
   document.getElementById('step3').classList.toggle('hidden', n !== 3);
-
   document.getElementById('step1Ind').className = 'step' + (n === 1 ? ' active' : n > 1 ? ' done' : '');
   document.getElementById('step2Ind').className = 'step' + (n === 2 ? ' active' : n > 2 ? ' done' : '');
   document.getElementById('step3Ind').className = 'step' + (n === 3 ? ' active' : '');
-
-  if (n === 2) renderBusinesses();
+  if (n === 2) renderScenes();
   if (n === 3) renderScript();
-
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function goBack(step) {
-  if (step === 1) { selectedPersonality = null; }
-  if (step === 2) { selectedBusiness = null; }
+  if (step === 1) selectedPersonality = null;
+  if (step === 2) selectedScene = null;
   goToStep(step);
 }
 
 function reset() {
   selectedPersonality = null;
-  selectedBusiness = null;
+  selectedScene = null;
   goToStep(1);
 }
 
-// ─── 初始化 ────────────────────────────────────────────────────────────────────
 renderPersonalities();
 </script>
 </body>
